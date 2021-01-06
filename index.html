@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodMood</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+</head>
+<body class="text-gray-800">
+    <main>
+        <header>
+            <h1 class="text-gray-900 text-6xl font-light pt-2">FoodMood</h1>
+            <h2 class="text-2xl font-light">Delicious recipes that target exactly what you're craving</h2>
+        </header>
+
+        <div>
+            <h4 class="font-semibold">Select number of meals</h4>
+            <form id=recipePreferences>
+                <select name="days" id="days">
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                    <option value="1">4</option>
+                    <option value="1">5</option>
+                    <option value="1">6</option>
+                    <option value="1">7</option>
+                </select>
+                    
+            <h4 class="font-semibold">What mood are you in?</h4>
+                <input type="checkbox" id="refreshing_id" name="mood[id]" value="Refreshing">
+                <label for="refreshing_id">Refreshing</label>
+                <input type="checkbox" id="comforting_id" name="mood[id]" value="Comforting">
+                <label for="comforting_id">Comforting</label>
+                <input type="checkbox" id="adventurous_id" name="mood[id]" value="Adventurous">
+                <label for="adventurous_id">Adventurous</label>
+                <input type="checkbox" id="fiery_id" name="mood[id]" value="Fiery">
+                <label for="fiery_id">Fiery</label>
+                <input type="checkbox" id="smokey_id" name="mood[id]" value="Smokey">
+                <label for="smokey_id">Smokey</label>
+                <input type="checkbox" id="nutty_id" name="mood[id]" value="Nutty">
+                <label for="nutty_id">Nutty</label>
+       
+                <input type="submit" value="Make it good!">
+            </form>
+        </div>
+
+        <div class="px-24 py-12" id="recipesContainer">
+            <h2 class="text-gray-900 text-3xl">Your Recipes</h2>
+            <div id=recipeCardContainer>
+                <img src="img/curry.jpg" alt="1-Pot Golden Curry Lentil Soup">
+                <div id="recipe1">
+                    <span>1-Pot Golden Curry Lentil Soup</span>
+                    <span>Recipe by Minimalist Baker</span>
+                    <p>The perfect dish when you need something nourishing and delicious on the table fast!</p>
+                    <h5>Instructions:</h5>
+                    <ol type="1">
+                        <li>Heat a large rimmed skillet or pot over medium heat. Once hot, add water (or oil) and shallot. Sauté for 3 minutes, stirring frequently, until softened and slightly browned.</li>
+                        <li>Add garlic, ginger, and serrano pepper and sauté for another 2-3 minutes. Then add carrots and a pinch of salt and stir. Cook for 1-2 minutes more, stirring occasionally. </li>
+                        <li>Add vegetable broth and coconut milk and increase heat to medium high. Bring to a low boil. Then add lentils and stir. Once the mixture comes back to a low bubble, reduce heat to low or until you achieve a gentle simmer.</li>
+                        <li>Add coconut aminos and curry powder and stir once more. Simmer the soup uncovered, stirring occasionally, for 12-16 minutes or until the carrots and lentils are tender (red lentils cook pretty quickly, so if you’re using other lentils, adjust cook time as needed). If the mixture becomes too thick, you can add more coconut milk or vegetable broth as needed. (We added a bit more of each to thin.)</li>
+                        <li>Taste and adjust flavor as needed, adding more salt or coconut aminos for saltiness / depth of flavor or more curry powder for intense curry flavor.</li>
+                        <li>Divide between serving bowls and garnish with fresh cilantro and lemon juice or a little fresh coconut milk or cream (optional). Store cooled leftovers in the refrigerator up to 5 days or in the freezer up to 1 month. Reheat on the stovetop until hot, adding more vegetable broth to thin as needed. </li>
+                    </ol>
+                
+                    <h5>Ingredients</h5>
+                    <ul>
+                        <li>1/4 cup water (or sub half the amount in oil)</li>
+                        <li>1/4 cup thinly sliced shallot (or onion)</li>
+                        <li>3 cloves garlic, minced</li>
+                        <li>1 Tbsp ginger, minced</li>
+                        <li>1 small serrano pepper (seeds removed, minced)</li>
+                        <li>2 cups thinly sliced carrots (or sub other sturdy seasonal vegetable)</li>
+                        <li>1 healthy pinch sea salt</li>
+                        <li>3 cups Vegetable Broth (or store-bought – we like Imagine brand)</li>
+                        <li>3/4 cup light coconut milk</li>
+                        <li>1 cup uncooked rinsed red or golden lentils (if using green or brown lentils, adjust cooking time as needed)</li>
+                        <li>2 Tbsp coconut aminos</li>
+                        <li>1 Tbsp Curry Powder</li>
+                    </ul>
+
+                    <div>
+                        <form id=recipeComment>
+                            <button type="submit" value="recipe_id">Leave a comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
