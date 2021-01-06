@@ -8,13 +8,14 @@
 </head>
 <body class="text-gray-800">
     <main>
-        <header>
-            <h1 class="text-gray-900 text-6xl font-light pt-2">FoodMood</h1>
-            <h2 class="text-2xl font-light">Delicious recipes that target exactly what you're craving</h2>
+        <header class="flex justify-center pt-2">
+            <span class="text-gray-900 text-6xl font-light">FoodMood</span>
         </header>
 
+        <span class="flex justify-center text-2xl italic font-light pb-10">Delicious recipes that target exactly what you're craving</span>
+
         <div>
-            <h4 class="font-semibold">Select number of meals</h4>
+            <h4 class="font-semibold py-2">Select number of meals</h4>
             <form id=recipePreferences>
                 <select name="days" id="days">
                     <option value="1">1</option>
@@ -26,7 +27,7 @@
                     <option value="1">7</option>
                 </select>
                     
-            <h4 class="font-semibold">What mood are you in?</h4>
+            <h4 class="flex flex-wrap content-center font-semibold py-2">What mood are you in?</h4>
                 <input type="checkbox" id="refreshing_id" name="mood[id]" value="Refreshing">
                 <label for="refreshing_id">Refreshing</label>
                 <input type="checkbox" id="comforting_id" name="mood[id]" value="Comforting">
@@ -39,20 +40,20 @@
                 <label for="smokey_id">Smokey</label>
                 <input type="checkbox" id="nutty_id" name="mood[id]" value="Nutty">
                 <label for="nutty_id">Nutty</label>
-       
+                <br></br>
                 <input type="submit" value="Make it good!">
             </form>
         </div>
 
-        <div class="px-24 py-12" id="recipesContainer">
-            <h2 class="text-gray-900 text-3xl">Your Recipes</h2>
-            <div id=recipeCardContainer>
-                <img src="img/curry.jpg" alt="1-Pot Golden Curry Lentil Soup">
-                <div id="recipe1">
-                    <span>1-Pot Golden Curry Lentil Soup</span>
-                    <span>Recipe by Minimalist Baker</span>
-                    <p>The perfect dish when you need something nourishing and delicious on the table fast!</p>
-                    <h5>Instructions:</h5>
+        <div class="px-24 py-10" id="recipesContainer">
+            <span class="text-gray-900 text-4xl border-b-2 border-gray-500">Your Recipes</span>
+            <div class="pt-8" id=recipeCardContainer>
+                <div class="border-4 border-gray-500 p-2" id="recipe1">
+                    <p class="font-semibold text-2xl">1-Pot Golden Curry Lentil Soup</p>
+                    <p class="italic text-lg">Recipe by: Minimalist Baker</p>
+                    <p class="text-lg">The perfect dish when you need something nourishing and delicious on the table fast!</p>
+                    <img class="border-1" src="img/curry.jpg" alt="1-Pot Golden Curry Lentil Soup">
+                    <h5 class="font-semibold">Instructions:</h5>
                     <ol type="1">
                         <li>Heat a large rimmed skillet or pot over medium heat. Once hot, add water (or oil) and shallot. Sauté for 3 minutes, stirring frequently, until softened and slightly browned.</li>
                         <li>Add garlic, ginger, and serrano pepper and sauté for another 2-3 minutes. Then add carrots and a pinch of salt and stir. Cook for 1-2 minutes more, stirring occasionally. </li>
@@ -62,7 +63,7 @@
                         <li>Divide between serving bowls and garnish with fresh cilantro and lemon juice or a little fresh coconut milk or cream (optional). Store cooled leftovers in the refrigerator up to 5 days or in the freezer up to 1 month. Reheat on the stovetop until hot, adding more vegetable broth to thin as needed. </li>
                     </ol>
                 
-                    <h5>Ingredients</h5>
+                    <h5 class="font-semibold">Ingredients:</h5>
                     <ul>
                         <li>1/4 cup water (or sub half the amount in oil)</li>
                         <li>1/4 cup thinly sliced shallot (or onion)</li>
@@ -77,7 +78,6 @@
                         <li>2 Tbsp coconut aminos</li>
                         <li>1 Tbsp Curry Powder</li>
                     </ul>
-
                     <div>
                         <form id=recipeComment>
                             <button type="submit" value="recipe_id">Leave a comment</button>
