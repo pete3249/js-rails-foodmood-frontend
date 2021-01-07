@@ -15,7 +15,7 @@ class Mood {
     }
 
     render() {
-        this.c = document.querySelector("#moodSelection")
+        this.cont = document.querySelector("#moodSelection")
         let br = document.createElement("br")
 
         this.checkbox ||= document.createElement("INPUT");
@@ -28,6 +28,6 @@ class Mood {
         this.label.innerHTML = this.name
         this.label.classList.add(..."text-lg font-light".split(" "))
 
-        return this.c.append(br, this.checkbox, this.label)
+        return this.cont.append(br, this.checkbox, this.label)
     }
 }
