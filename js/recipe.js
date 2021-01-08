@@ -9,16 +9,21 @@ class Recipe {
         let moodInput = []
         document.getElementsByName("mood").forEach(node => {
             if(node.checked) {
-                moodInput.push(node["id"])
+                moodInput.push(node["value"])
             }
         })
         if (moodInput === undefined || moodInput.length == 0) {
             moodInput = null
         }
-        Recipe.create(dayInput, moodInput)
+        Recipe.load(dayInput, moodInput)
     }
 
-    static create(days, mood) {
-        
+    static load(days, mood) {
+        return fetch(`http://localhost:3000/recipes?days=${days}&mood=${mood}`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+        })  
     }
 }
