@@ -32,7 +32,7 @@ class Mood {
 
         this.checkbox ||= document.createElement("INPUT");
         this.checkbox.setAttribute("type", "checkbox")
-        this.checkbox.dataset.moodId = this.id
+        this.checkbox.value = this.id
         this.checkbox.id = this.name
         this.checkbox.name = "mood"
 
