@@ -4,9 +4,21 @@ class Mood {
         whitelist.forEach(attr => this[attr] = attributes[attr])
     }
 
+    // add catch later with FlashMessage
     static all() {
-        fetch("http://localhost:3000/moods")
-            .then(res => res.json())
+        return fetch("http://localhost:3000/moods", {
+            headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                if(res.ok) {
+                    return res.json()
+                } else {
+                    return res.text().then(error => Promise.reject(error))
+                }
+            })
             .then(moodObjects => {
                 this.moods = moodObjects.map(moodAttributes => new Mood(moodAttributes))
                 let moods = this.moods.map(mood => mood.render())
@@ -22,6 +34,7 @@ class Mood {
         this.checkbox.setAttribute("type", "checkbox")
         this.checkbox.dataset.moodId = this.id
         this.checkbox.id = this.name
+        this.checkbox.name = "mood"
 
         this.label ||= document.createElement("LABEL");
         this.label.setAttribute("for",`${this.name}`)
