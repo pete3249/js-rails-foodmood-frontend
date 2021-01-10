@@ -4,7 +4,6 @@ class Mood {
         whitelist.forEach(attr => this[attr] = attributes[attr])
     }
 
-    // add catch later with FlashMessage
     static all() {
         return fetch("http://localhost:3000/moods", {
             headers: {
@@ -24,10 +23,13 @@ class Mood {
                 let moods = this.moods.map(mood => mood.render())
                 return this.moods
             })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
-        this.cont = document.querySelector("#moodSelection")
+        let container = document.querySelector("#moodSelection")
         let br = document.createElement("br")
 
         this.checkbox ||= document.createElement("INPUT");
@@ -41,6 +43,6 @@ class Mood {
         this.label.innerHTML = this.name
         this.label.classList.add(..."text-lg font-light".split(" "))
 
-        return this.cont.append(br, this.checkbox, this.label)
+        return container.append(br, this.checkbox, this.label)
     }
 }
