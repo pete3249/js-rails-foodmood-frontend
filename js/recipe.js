@@ -4,6 +4,25 @@ class Recipe {
         whitelist.forEach(attr => this[attr] = attributes[attr])
     }
 
+    static toggleButton() {
+        let button = document.querySelector("#recipePref")
+        if(button.innerText === "Make it good!") {
+            document.querySelector("#recipePref").innerText = "Reset"
+        } else {
+            document.querySelector("#recipePref").innerText = "Make it good!"
+        }
+    }
+
+    static reset() {
+        let container = document.querySelector("#recipeCardsContainer");
+        container.innerHTML = "";
+        document.getElementById("days").value = "1";
+        document.getElementsByName("mood").forEach(element => {
+            element.checked = false;
+        })
+        Recipe.toggleButton();
+    }
+
     static filter() {
         let dayInput = document.getElementById("days").value
         let moodInput = []
@@ -34,7 +53,7 @@ class Recipe {
         })
         .then(recipeObjects=> {
             this.recipes = recipeObjects.map(recipeAttributes => new Recipe(recipeAttributes))
-            let recipes = this.recipes.map(recipe => recipe.render())
+            let recipes = this.recipes.map(recipe => recipe.render());
             return this.recipes
         })
     }
