@@ -7,6 +7,11 @@ document.addEventListener("submit", (e) => {
     
     if(target.matches("#recipePreferencesForm")) {
         e.preventDefault();
-        Recipe.filter();
+        if(target.querySelector("button").innerText === "Make it good!") {
+            Recipe.filter();
+            Recipe.toggleButton();
+        } else {
+            Recipe.reset();
+        }
     }
 })
