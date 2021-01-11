@@ -4,6 +4,10 @@ class Mood {
         whitelist.forEach(attr => this[attr] = attributes[attr])
     }
 
+    static container() {
+        return this.c ||= document.querySelector("#moodSelection")
+    }
+
     static all() {
         return fetch("http://localhost:3000/moods", {
             headers: {
@@ -29,7 +33,6 @@ class Mood {
     }
 
     render() {
-        let container = document.querySelector("#moodSelection")
         let br = document.createElement("br")
 
         this.checkbox ||= document.createElement("INPUT");
@@ -43,6 +46,6 @@ class Mood {
         this.label.innerHTML = this.name
         this.label.classList.add(..."text-lg font-light".split(" "))
 
-        return container.append(br, this.checkbox, this.label)
+        return Mood.container().append(br, this.checkbox, this.label)
     }
 }
