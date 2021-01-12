@@ -1,6 +1,6 @@
 class Comment {
     constructor(attributes) {
-        let whitelist= ["id", "name", "review", "recipe_id", "date"]
+        let whitelist= ["id", "name", "review", "recipe_id", "created_at"]
         whitelist.forEach(attr => this[attr] = attributes[attr])
     }
 
@@ -21,7 +21,13 @@ class Comment {
             }
         })
         .then(commentObject => {
-            debugger
+            let comment = new Comment(commentObject)
+            let recipe = Recipe.findById(comment.recipe_id)
+            recipe.comments.push(comment)
+            recipe.cContainer.appendChild(comment.add_comment())
+        })
+        .catch(error => {
+            new FlashMessage({type: 'error', message: error})
         })
     }
 
@@ -32,7 +38,7 @@ class Comment {
 
         this.commentBody = document.createElement("p")
         this.commentBody.classList.add(..."p-2 px-8 italic".split(" "))
-        this.commentBody.innerHTML = `${this.name} said: ${this.review} (${this.date})`
+        this.commentBody.textContent = `${this.name} said: ${this.review} (${this.created_at})`
 
         this.commentDiv.append(this.commentBody)
         return this.commentDiv
