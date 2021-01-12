@@ -19,7 +19,7 @@ class Mood {
     }
 
     render() {
-        let b = document.createElement("br");
+        let div = document.createElement("div")
 
         this.checkbox ||= document.createElement("input");
         this.checkbox.setAttribute("type", "checkbox");
@@ -31,7 +31,8 @@ class Mood {
         this.label.setAttribute("for",`${this.name}`);
         this.label.textContent = this.name;
         this.label.classList.add(..."text-lg font-light".split(" "));
+        div.append(this.checkbox, " ", this.label)
 
-        return Mood.container().append(b, this.checkbox, this.label);
+        return Mood.container().appendChild(div)
     }
 }
