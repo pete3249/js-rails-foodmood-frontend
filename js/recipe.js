@@ -1,6 +1,6 @@
 class Recipe {
     constructor(attributes) {
-        let whitelist = ["id", "name", "author", "description", "instructions", "image_url", "recipe_ingredients"]
+        let whitelist = ["id", "name", "author", "description", "instructions", "image_url", "recipe_ingredients", "comments"]
         whitelist.forEach(attr => this[attr] = attributes[attr])
     }
 
@@ -118,6 +118,36 @@ class Recipe {
             this.ingredientList.appendChild(li)
         }
 
+        // if(this.comments.length > 0) {
+        //     this.currentComments = document.createElement("div");
+        //     this.currentComments.id = "currentCommentsSection"
+
+        //     this.currentCommentsContainer = document.createElement("div");
+        //     this.currentCommentsContainer.id = "comments";
+        //     this.currentCommentsContainer.className = "flex-auto"
+        //     this.currentComments.appendChild(this.currentCommentsContainer);
+
+        //     this.title = document.createElement('p');
+        //     this.title.classList.add(..."font-semibold text-xl p-2 px-8".split(" "));
+        //     this.title.innerHTML = "What the others are saying...";
+            
+        //    this.comments.forEach(comment => {
+        //        this.commentDiv = document.createElement("div")
+        //        this.commentDiv.dataset.commentId = comment.id
+        //        this.commentDiv.id = "comments"
+
+        //        this.commentBody = document.createElement("span")
+        //        this.commentBody.className = "italic"
+        //        this.commentBody.innerHTML = `${comment.name} said: ${comment.review} on ${comment.date}`
+        //        this.commentDiv.appendChild(this.commentBody);
+        //        let mainContainer = document.querySelector("#comments");
+        //        mainContainer.appendChild(this.commentDiv);
+        //    })
+
+        //    this.currentCommentsContainer.append(this.title, this.commentDiv);
+        //    return this.currentComments;
+        // }
+        
         this.button = document.createElement("button")
         this.button.innerHTML = "Leave comment"
         this.button.classList.add(..."absolute bottom-0 right-0 m-2 bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded".split(" "))
@@ -126,6 +156,28 @@ class Recipe {
         this.element.append(this.titleBox, this.recipeDetails, this.button)
         Recipe.container().append(this.element)
     }
+
+
+/* <div id="currentCommentsSection">
+    <div id="comments"class="flex-auto">
+        <p class="font-semibold text-xl p-2 px-8">What the others are saying...</p>
+        <div class="text-lg p-2 px-8">
+            <span class="italic">Katelyn said: </span>
+            <span>I loved this recipe!</span>
+        </div>
+    </div>
+</div> */
+
+
+
+
+
+
+
+
+
+
+
 
     static toggleButton() {
         let button = document.querySelector("#recipePref")
@@ -145,7 +197,7 @@ class Recipe {
         return this.recipes.find(recipe => recipe.id == id)
     }
 
-    add_comment() {
+    add_new_comment() {
         this.commentContainer = document.createElement("div");
         this.commentContainer.className = "flex";
     
@@ -159,7 +211,8 @@ class Recipe {
     
         this.form = document.createElement("form");
         this.form.className = "mx-8";
-        this.form.id = "commentsForm";
+        this.form.id = "newCommentForm";
+        this.form.dataset.recipeId = this.id
     
         let label = document.createElement("label");
         label.setAttribute("for", "name");
