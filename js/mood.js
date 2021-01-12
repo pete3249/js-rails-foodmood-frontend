@@ -13,13 +13,13 @@ class Mood {
             .then(res => res.json())
             .then(moodObjects => {
                 this.moods = moodObjects.map(moodAttributes => new Mood(moodAttributes))
-                let moods = this.moods.map(mood => mood.render());
+                let moods = this.moods.map(mood => mood.render())
                 return this.moods;
             })
     }
 
     render() {
-        let div = document.createElement("div")
+        this.div ||= document.createElement("div")
 
         this.checkbox ||= document.createElement("input");
         this.checkbox.setAttribute("type", "checkbox");
@@ -31,8 +31,8 @@ class Mood {
         this.label.setAttribute("for",`${this.name}`);
         this.label.textContent = this.name;
         this.label.classList.add(..."text-lg font-light".split(" "));
-        div.append(this.checkbox, " ", this.label)
+        this.div.append(this.checkbox, " ", this.label)
 
-        return Mood.container().appendChild(div)
+        return Mood.container().appendChild(this.div)
     }
 }
