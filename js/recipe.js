@@ -16,7 +16,7 @@ class Recipe {
                 moods.push(node["value"])
             }
         })
-        if (moods === undefined || moods.length == 0) {
+        if(moods === undefined || moods.length == 0) {
             moods = null
         }
         Recipe.load(days, moods)
@@ -40,6 +40,9 @@ class Recipe {
             this.recipes = recipeObjects.map(recipeAttributes => new Recipe(recipeAttributes))
             let recipes = this.recipes.map(recipe => recipe.render());
             return this.recipes
+        })
+        .catch(error => {
+            new FlashMessage({type: 'error', message: error});
         })
     }
 
