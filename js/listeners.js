@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 document.addEventListener("submit", (e) => {
     let target = e.target;
+
     if(target.matches("#prefForm")) {
         e.preventDefault();
-        if(target.querySelector("button").textContent === "Make it good!") {
+        if(target.querySelector("button").innerText === "Make it good!") {
             Recipe.filter();
             Recipe.toggleButton();
         } else {
