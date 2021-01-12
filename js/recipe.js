@@ -145,6 +145,7 @@ class Recipe {
 
         this.cContainer = document.createElement("div")
         this.cContainer.id = "comments"
+        this.cContainer.dataset.recipeId = this.id
         this.cContainer.classList.add(..."flex-auto pb-4".split(" "))
         this.currentComments.appendChild(this.cContainer)
 
@@ -155,8 +156,7 @@ class Recipe {
 
         this.comments = this.comments.map(comment => new Comment(comment))
         let comments = this.comments.map(comment => comment.add_comment())
-        let b = document.createElement("br")
-        this.cContainer.append(...comments, b)
+        this.cContainer.append(...comments)
     }
 
     renderCommentButton() {
@@ -164,6 +164,7 @@ class Recipe {
         this.button.innerHTML = "Leave comment"
         this.button.classList.add(..."absolute bottom-0 right-0 m-2 bg-blue-300 hover:bg-blue-400 text-black font-bold mt-2 py-2 px-4 rounded".split(" "))
         this.button.id = "newComment"
+        return this.button
     }
 
     static toggleButton() {
@@ -172,8 +173,8 @@ class Recipe {
     }
 
     static reset() {
-        this.container.innerHTML = ""
-        document.getElementById("days").value = "1";
+        this.container().innerHTML = ""
+        document.getElementById("days").value = "1"
         document.getElementsByName("mood").forEach(element => {
             element.checked = false
         })
