@@ -21,6 +21,10 @@ document.addEventListener("submit", (e) => {
             recipe_id: target.dataset.recipeId
         }
         Comment.create({comment: formData})
+        target.parentElement.remove()
+        let recipe = Recipe.findById(target.dataset.recipeId)
+        let button = recipe.renderCommentButton()
+        recipe.element.append(button)
     } 
 })
 
@@ -29,6 +33,7 @@ document.addEventListener("click", (e) => {
 
     if(target.matches("#newComment")) {
         let recipe = Recipe.findById(target.parentElement.id)
-        recipe.add_new_comment();
+        recipe.add_new_comment()
+        target.remove()
     }
 })
