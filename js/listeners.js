@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 document.addEventListener("submit", (e) => {
     let target = e.target;
-    
     if(target.matches("#prefForm")) {
         e.preventDefault();
         if(target.querySelector("button").textContent === "Make it good!") {
@@ -13,7 +12,15 @@ document.addEventListener("submit", (e) => {
         } else {
             Recipe.reset();
         } 
-    }
+    } else if(target.matches("#newCommentForm")) {
+        e.preventDefault();
+        let formData = {
+            name: target.querySelector("input").value,
+            review: target.querySelector("textarea").value,
+            recipe_id: target.dataset.recipeId
+        }
+        Comment.create({comment: formData})
+    } 
 })
 
 document.addEventListener("click", (e) => {
@@ -21,6 +28,6 @@ document.addEventListener("click", (e) => {
 
     if(target.matches("#newComment")) {
         let recipe = Recipe.findById(target.parentElement.id)
-        recipe.add_comment();
+        recipe.add_new_comment();
     }
 })
