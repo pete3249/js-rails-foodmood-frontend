@@ -33,17 +33,23 @@ class Recipe {
             if(res.ok) {
                 return res.json()
             } else {
-                return res.text.then(errors => Promise.reject(errors))
+                return res.text().then(errors => Promise.reject(errors))
             }
         })
         .then(recipeObjects=> {
             this.recipes = recipeObjects.map(recipeAttributes => new Recipe(recipeAttributes))
+            Recipe.toggleRecipeTitle()
             let recipes = this.recipes.map(recipe => recipe.render())
             return this.recipes
         })
         .catch(error => {
             new FlashMessage({type: 'error', message: error})
+            Recipe.reset()
         })
+    }
+
+    static toggleRecipeTitle() {
+        document.querySelector("#yourRecipes").classList.toggle("invisible")
     }
 
     render() {
@@ -60,6 +66,7 @@ class Recipe {
     
         this.element.append(this.titleBox, this.recipeDetails, this.currentComments, this.button)
         Recipe.container().append(this.element)
+        return this.element
     }
 
     renderMainInfo() {
