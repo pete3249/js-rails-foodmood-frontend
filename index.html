@@ -5,11 +5,16 @@
     <title>FoodMood</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <style>
+        .top-32{
+            top:32px;
+        }
+    </style>
 </head>
 
 <body class="text-gray-800 bg-blue-100">
     <main>
-        <div class="h-10 p-2 pb-2 opacity-0 transition-all duration-500 ease-in-out" id="flash"></div>
+        <div class="fixed h-10 top-32 z-50 w-full p-2 pb-2 opacity-0 transition-all duration-500 ease-in-out" id="flash"></div>
 
         <header class="flex justify-center pt-2">
             <span class="text-gray-900 text-6xl font-light">FoodMood</span>
@@ -25,8 +30,11 @@
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
-                <h4 class="text-xl font-semibold py-4" id="moodSelection">What mood are you in?</h4>
-                <button class="bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded block" id="recipePref" type="submit">Make it good!</button>
+                <h4 class="text-xl font-semibold py-4">What mood are you in?</h4>
+                <section id="moodSelection" class="grid grid-cols-4 gap-2">
+
+                </section>
+                <button class="mx-auto mt-4 bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded block" id="recipePref" type="submit">Make it good!</button>
             </form>
         </div>
         
