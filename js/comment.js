@@ -25,6 +25,7 @@ class Comment {
             let recipe = Recipe.findById(comment.recipe_id)
             recipe.comments.push(comment)
             recipe.cContainer.appendChild(comment.add_comment())
+            new FlashMessage({type: 'success', message: "Feedback Submitted"})
         })
         .catch(error => {
             new FlashMessage({type: 'error', message: error})
