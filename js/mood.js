@@ -17,35 +17,35 @@ class Mood {
         })
             .then(res => {
                 if(res.ok) {
-                    return res.json()
+                    return res.json();
                 } else {
-                    return res.text().then(error => Promise.reject(error))
+                    return res.text().then(error => Promise.reject(error));
                 }
             })
             .then(moodObjects => {
-                this.moods = moodObjects.map(moodAttributes => new Mood(moodAttributes))
-                let moods = this.moods.map(mood => mood.render())
-                return this.moods
+                this.moods = moodObjects.map(moodAttributes => new Mood(moodAttributes));
+                let moods = this.moods.map(mood => mood.render());
+                return this.moods;
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             })
     }
 
     render() {
-        let br = document.createElement("br")
+        let br = document.createElement("br");
 
         this.checkbox ||= document.createElement("INPUT");
-        this.checkbox.setAttribute("type", "checkbox")
-        this.checkbox.value = this.id
-        this.checkbox.id = this.name
-        this.checkbox.name = "mood"
+        this.checkbox.setAttribute("type", "checkbox");
+        this.checkbox.value = this.id;
+        this.checkbox.id = this.name;
+        this.checkbox.name = "mood";
 
         this.label ||= document.createElement("LABEL");
-        this.label.setAttribute("for",`${this.name}`)
-        this.label.innerHTML = this.name
-        this.label.classList.add(..."text-lg font-light".split(" "))
+        this.label.setAttribute("for",`${this.name}`);
+        this.label.innerHTML = this.name;
+        this.label.classList.add(..."text-lg font-light".split(" "));
 
-        return Mood.container().append(br, this.checkbox, this.label)
+        return Mood.container().append(br, this.checkbox, this.label);
     }
 }
