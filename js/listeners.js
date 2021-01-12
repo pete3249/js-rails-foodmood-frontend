@@ -1,20 +1,21 @@
 document.addEventListener("DOMContentLoaded", (e) => {
-    Mood.all();
+    Mood.all()
 });
 
 document.addEventListener("submit", (e) => {
-    let target = e.target;
+    let target = e.target
 
     if(target.matches("#prefForm")) {
-        e.preventDefault();
+        e.preventDefault()
         if(target.querySelector("button").innerText === "Make it good!") {
-            Recipe.filter();
-            Recipe.toggleButton();
+            Recipe.filter()
+            Recipe.toggleButton()
         } else {
-            Recipe.reset();
+            Recipe.reset()
+            Recipe.toggleRecipeTitle()
         } 
     } else if(target.matches("#newCommentForm")) {
-        e.preventDefault();
+        e.preventDefault()
         let formData = {
             name: target.querySelector("input").value,
             review: target.querySelector("textarea").value,
