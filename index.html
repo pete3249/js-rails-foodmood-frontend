@@ -23,7 +23,7 @@
         <span class="flex justify-center text-2xl italic font-light pb-4">Delicious recipes that target exactly what you're craving</span>
 
         <div class="flex justify-center">
-            <form id="prefForm">
+            <form class="pb-6"id="prefForm">
                 <label class="font-semibold text-xl">Select number of meals</label>
                 <select name="days" id="days">
                     <option value="1">1</option>
@@ -32,9 +32,16 @@
                 </select>
                 <h4 class="text-xl font-semibold py-4">What mood are you in?</h4>
                 <section id="moodSelection" class="grid grid-cols-4 gap-2">
-
                 </section>
-                <button class="mx-auto mt-4 bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded block" id="recipePref" type="submit">Make it good!</button>
+                <button class="mx-auto mt-4 bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded block" id="recipePref" type="submit">Make it good</button>
+            </form>
+        </div>
+
+        <div class="flex justify-center">
+            <form id="searchForm">
+                <label for="input" class="italic text-lg block pb-2">Know the recipe you want?</label>
+                <input type="text" class="mx-auto block rounded border-solid border-gray-400 border-2" id="input" placeholder=" Search here...">
+                <button class="mx-auto mt-4 bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded block" id="search" type="submit">Search</button>
             </form>
         </div>
         
