@@ -9,6 +9,9 @@
         .top-32{
             top:32px;
         }
+        .h-40{
+            height:20rem;
+        }
     </style>
 </head>
 
@@ -17,7 +20,7 @@
         <div class="fixed h-10 top-32 z-50 w-full p-2 pb-2 opacity-0 transition-all duration-500 ease-in-out" id="flash"></div>
 
         <header class="flex justify-center pt-2">
-            <span class="text-gray-900 text-6xl font-light">FoodMood</span>
+            <span class="text-blue-900 text-6xl font-light">FoodMood</span>
         </header>
 
         <span class="flex justify-center text-2xl italic font-light pb-4">Delicious recipes that target exactly what you're craving</span>
@@ -44,10 +47,11 @@
                 <button class="mt-2 h-9 px-4 rounded-r-lg bg-blue-300 hover:bg-blue-400 text-gray-800 font-bold border-t border-b border-r">Search</button>
             </form>
         </div>
+        <br></br>
 
         <div class="mx-auto">
-            <span id="yourRecipes" class="m-10 text-gray-900 text-4xl border-b-2 border-gray-500 invisible">Your Recipes</span>
-            <div class="justify-center m-10 bg-white" id="recipeCardsContainer">
+            <span id="yourRecipes" class="m-10 text-blue-900 text-4xl invisible">Your Recipes</span>
+            <div class="justify-center mx-10 bg-white" id="recipeCardsContainer">
             <!-- Row-->
             <!-- <div class="border-2" id="recipeCard1">
                     <div class="flex">
