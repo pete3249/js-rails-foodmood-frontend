@@ -149,7 +149,7 @@ class Recipe {
     renderComments() {
         this.currentComments = document.createElement("div")
         this.currentComments.id = "currentCommentsSection"
-
+    
         this.cContainer = document.createElement("div")
         this.cContainer.id = "comments"
         this.cContainer.dataset.recipeId = this.id
@@ -161,9 +161,15 @@ class Recipe {
         this.cHeader.innerHTML = "What the others are saying..."
         this.cContainer.appendChild(this.cHeader)
 
-        this.comments = this.comments.map(comment => new Comment(comment))
-        let comments = this.comments.map(comment => comment.add_comment())
-        this.cContainer.append(...comments)
+        if(this.comments === null) {
+            this.comments = []
+            this.cContainer.append(this.comments)
+            return this.comments
+        } else {
+            this.comments = this.comments.map(comment => new Comment(comment))
+            let comments = this.comments.map(comment => comment.add_comment())
+            this.cContainer.append(...comments)
+        }
     }
 
     renderCommentButton() {
