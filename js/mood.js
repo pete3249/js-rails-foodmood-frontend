@@ -19,15 +19,15 @@ class Mood {
     }
 
     render() {
-        this.div ||= document.createElement("div")
+        this.div = document.createElement("div")
 
-        this.checkbox ||= document.createElement("input");
+        this.checkbox = document.createElement("input");
         this.checkbox.setAttribute("type", "checkbox");
         this.checkbox.value = this.id;
         this.checkbox.id = this.name;
         this.checkbox.name = "mood";
 
-        this.label ||= document.createElement("label");
+        this.label = document.createElement("label");
         this.label.setAttribute("for",`${this.name}`);
         this.label.textContent = this.name;
         this.label.classList.add(..."text-lg font-light".split(" "));
