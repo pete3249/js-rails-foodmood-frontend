@@ -19,11 +19,20 @@ document.addEventListener("submit", (e) => {
         let input = `${target.querySelector("input").value}`
         Recipe.search(input)
         Recipe.clear_search_value()
-    } else if(target.matches("#newCommentForm")) {
+    } 
+})
+
+document.addEventListener("click", (e) => {
+    let target = e.target;
+    if(target.matches("#newComment")) {
+        let recipe = Recipe.findById(target.parentElement.id)
+        recipe.addNewComment()
+        target.remove()
+    } else if(target.matches("#comment")) {
         e.preventDefault()
         let formData = {
-            name: target.querySelector("input").value,
-            review: target.querySelector("textarea").value,
+            name: target.parentElement.querySelector("input").value,
+            review: target.parentElement.querySelector("textarea").value,
             recipe_id: target.dataset.recipeId
         }
         Comment.create({comment: formData})
@@ -31,14 +40,10 @@ document.addEventListener("submit", (e) => {
         let recipe = Recipe.findById(target.dataset.recipeId)
         let button = recipe.renderCommentButton()
         recipe.element.append(button)
-    }
-})
-
-document.addEventListener("click", (e) => {
-    let target = e.target;
-    if(target.matches("#newComment")) {
-        let recipe = Recipe.findById(target.parentElement.id)
-        recipe.add_new_comment()
+    } else if(target.matches("#cancel")) {
+        let recipe = Recipe.findById(target.dataset.recipeId)
+        recipe.commentContainer.remove()
         target.remove()
+        recipe.element.append(recipe.renderCommentButton())
     }
 })
