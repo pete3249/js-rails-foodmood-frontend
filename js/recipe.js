@@ -228,22 +228,30 @@ class Recipe {
         return this.button
     }
 
-    add_new_comment() {
+    addNewComment() {
         this.commentContainer = document.createElement("div")
         this.commentContainer.className = "flex"
     
         this.newCommentSection = document.createElement("div")
         this.newCommentSection.id = "newCommentSection"
         this.newCommentSection.className = "flex-auto"
-    
-        this.title = document.createElement('p')
-        this.title.classList.add(..."font-semibold text-xl p-2 px-8".split(" "))
-        this.title.textContent = "Leave a comment"
-    
+        
+        this.addCommentForm()
+
+        this.newCommentSection.append(this.form)
+        this.commentContainer.appendChild(this.newCommentSection)
+        this.element.appendChild(this.commentContainer)
+    }
+
+    addCommentForm() {
         this.form = document.createElement("form")
         this.form.className = "mx-8"
         this.form.id = "newCommentForm"
         this.form.dataset.recipeId = this.id
+
+        this.title = document.createElement('p')
+        this.title.classList.add(..."font-semibold text-xl pb-2".split(" "))
+        this.title.textContent = "Leave a comment"
     
         let label = document.createElement("label")
         label.setAttribute("for", "name")
@@ -252,17 +260,18 @@ class Recipe {
     
         let name = document.createElement("input")
         name.setAttribute("type", "text")
-        name.classList.add(..."mb-2 border-gray-500 border rounded-md bloco".split(" "))
+        name.classList.add(..."mb-2 border-gray-500 border rounded-lg lg:rounded-l-none bloco".split(" "))
         name.id = "name"
     
         let textbox = document.createElement("textarea")
-        textbox.classList.add(..."mb-2 border-2 border-gray-500 resize-y border w-11/12 lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none block".split(" "))
+        textbox.classList.add(..."mb-2 border-2 border-gray-500 resize-y w-9/12 border bg-white p-5 rounded-lg lg:rounded-l-none block".split(" "))
         textbox.rows = "2"
         textbox.cols = "30"
         textbox.placeholder = "Tell us your thoughts..."
     
         let button = document.createElement("button")
         button.textContent = "Submit"
+        button.dataset.recipeId = this.id
         button.classList.add(..."object-right-bottom bg-blue-300 hover:bg-green-300 font-bold py-2 px-4 rounded".split(" "))
         button.id = "comment"
     
@@ -271,18 +280,11 @@ class Recipe {
         cancelButton.classList.add(..."float-right bg-blue-300 hover:bg-red-300 font-bold py-2 px-4 rounded".split(" "))
         cancelButton.id = "cancel"
         cancelButton.dataset.recipeId = this.id
-        cancelButton.addEventListener("click", function(){
-            let recipe = Recipe.findById(this.dataset.recipeId)
-            recipe.commentContainer.remove()
-            this.remove()
-            recipe.element.append(recipe.renderCommentButton())
-        })
 
-        this.form.append(label, name, textbox, button, cancelButton)
-        this.newCommentSection.append(this.title, this.form)
-        this.commentContainer.appendChild(this.newCommentSection)
-        this.element.appendChild(this.commentContainer)
+        this.form.append(this.title, label, name, textbox, button, cancelButton)
+        return this.form
     }
+    
 }
 
 
