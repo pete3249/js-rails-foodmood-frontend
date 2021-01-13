@@ -223,7 +223,7 @@ class Recipe {
     renderCommentButton() {
         this.button = document.createElement("button")
         this.button.textContent = "Leave comment"
-        this.button.classList.add(..."absolute bottom-0 right-0 m-2 rounded-lg border bg-blue-300 hover:bg-blue-400 text-gray-800 font-bold py-2 px-4 rounded block".split(" "))
+        this.button.classList.add(..."absolute bottom-0 right-0 m-2 rounded-lg border bg-blue-300 hover:bg-blue-400 font-bold py-2 px-4 rounded block".split(" "))
         this.button.id = "newComment"
         return this.button
     }
@@ -261,14 +261,29 @@ class Recipe {
         textbox.cols = "30"
         textbox.placeholder = "Tell us your thoughts..."
     
-        let button = document.createElement("BUTTON")
+        let button = document.createElement("button")
         button.textContent = "Submit"
-        button.classList.add(..."object-none object-right-bottom bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded".split(" "))
+        button.classList.add(..."object-right-bottom bg-blue-300 hover:bg-green-300 font-bold py-2 px-4 rounded".split(" "))
         button.id = "comment"
     
-        this.form.append(label, name, textbox, button)
+        let cancelButton = document.createElement("button")
+        cancelButton.textContent = "Cancel"
+        cancelButton.classList.add(..."float-right bg-blue-300 hover:bg-red-300 font-bold py-2 px-4 rounded".split(" "))
+        cancelButton.id = "cancel"
+        cancelButton.dataset.recipeId = this.id
+        cancelButton.addEventListener("click", function(){
+            let recipe = Recipe.findById(this.dataset.recipeId)
+            recipe.commentContainer.remove()
+            this.remove()
+            recipe.element.append(recipe.renderCommentButton())
+        })
+
+        this.form.append(label, name, textbox, button, cancelButton)
         this.newCommentSection.append(this.title, this.form)
         this.commentContainer.appendChild(this.newCommentSection)
         this.element.appendChild(this.commentContainer)
     }
 }
+
+
+
