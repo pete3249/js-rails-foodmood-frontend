@@ -37,9 +37,8 @@ document.addEventListener("click", (e) => {
         }
         Comment.create({comment: formData})
         target.parentElement.remove()
-        let recipe = Recipe.findById(target.dataset.recipeId)
         let button = recipe.renderCommentButton()
-        recipe.element.append(button)
+        Recipe.findById(target.dataset.recipeId).element.append(button)
     } else if(target.matches("#cancel")) {
         let recipe = Recipe.findById(target.dataset.recipeId)
         recipe.commentContainer.remove()
