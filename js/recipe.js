@@ -38,8 +38,8 @@ class Recipe {
         })
         .then(recipeObjects=> {
             this.recipes = recipeObjects.map(recipeAttributes => new Recipe(recipeAttributes))
-            Recipe.toggleRecipeTitle()
             let recipes = this.recipes.map(recipe => recipe.render())
+            Recipe.toggleRecipeTitle()
             return this.recipes
         })
         .catch(error => {
@@ -52,9 +52,57 @@ class Recipe {
         document.querySelector("#yourRecipes").classList.toggle("invisible")
     }
 
+    static reset() {
+        this.container().textContent = ""
+        document.getElementById("days").value = "1"
+        document.getElementsByName("mood").forEach(element => {
+            element.checked = false
+        })
+        Recipe.toggleButton()
+    }
+
+    static toggleButton() {
+        let button = document.querySelector("#recipePref")
+        button.innerText === "Make it good"? document.querySelector("#recipePref").textContent = "Reset" : document.querySelector("#recipePref").textContent = "Make it good"
+    }
+
+    static search(input) {
+        return fetch(`http://localhost:3000/recipes?search=${input}`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => {
+            if(res.ok) {
+                return res.json()
+            } else {
+                return res.text().then(errors => Promise.reject(errors))
+            }
+        })
+        .then(recipeObjects=> {
+            this.recipes = recipeObjects.map(recipeAttributes => new Recipe(recipeAttributes))
+            Recipe.toggleRecipeTitle()
+            Recipe.toggleButton()
+            let recipes = this.recipes.map(recipe => recipe.render())
+            return this.recipes
+        })
+        .catch(error => {
+            new FlashMessage({type: 'error', message: error})
+        })
+    }
+
+    static clear_search_value() {
+        document.querySelector("#searchForm").querySelector("#input").value = " "
+    }
+
+    static findById(id) {
+        return this.recipes.find(recipe => recipe.id == id)
+    }
+
     render() {
         this.element = document.createElement('div')
-        this.element.classList.add(..."relative border-2".split(" "))
+        this.element.classList.add(..."relative border-4 border-gray-300".split(" "))
         this.element.id = this.id
     
         this.renderMainInfo()
@@ -74,19 +122,19 @@ class Recipe {
         this.titleBox.className = "flex"
 
         this.mainInfo = document.createElement('div')
-        this.mainInfo.className = "flex-auto"
+        this.mainInfo.className = "flex-1"
 
         this.recipeName = document.createElement('p')
         this.recipeName.classList.add(..."font-bold text-xl pt-4 mx-8".split(" "))
-        this.recipeName.innerHTML = this.name
+        this.recipeName.textContent = this.name
 
         this.recipeAuthor = document.createElement('p')
         this.recipeAuthor.classList.add(..."italic text-lg pt-1 mx-8 text-sm".split(" "))
-        this.recipeAuthor.innerHTML = `By: ${this.author}`
+        this.recipeAuthor.textContent = `By: ${this.author}`
 
         this.recipeDescription = document.createElement('p')
         this.recipeDescription.classList.add(..."text-lg pb-2 pt-1 mx-8 text-sm".split(" "))
-        this.recipeDescription.innerHTML = this.description
+        this.recipeDescription.textContent = this.description
 
         this.mainInfo.append(this.recipeName, this.recipeAuthor, this.recipeDescription);
         this.titleBox.appendChild(this.mainInfo)
@@ -94,9 +142,9 @@ class Recipe {
 
     renderImage() {
         this.recipeImage = document.createElement('div')
-        this.recipeImage.className = "flex-auto"
+        this.recipeImage.className = "flex h-40"
         this.image = document.createElement('img')
-        this.image.classList.add(..."inline-block inline-center h-32 w-32 pt-4".split(" "))
+        this.image.className = "h-full"
         this.image.src = this.image_url
         this.image.alt = this.name
         this.recipeImage.appendChild(this.image)
@@ -113,7 +161,7 @@ class Recipe {
 
         this.instructionLabel = document.createElement('span')
         this.instructionLabel.classList.add(..."font-semibold pt-4 px-4 text-xl".split(" "))
-        this.instructionLabel.innerHTML = "Instructions"
+        this.instructionLabel.textContent = "Instructions"
 
         this.instructionList = document.createElement('ul')
         this.instructionList.classList.add(..."list-disc list-inside p-4".split(" "))
@@ -121,7 +169,7 @@ class Recipe {
 
         for (const element of this.instructions) {
             const li = document.createElement('li')
-            li.innerHTML = `${element}`
+            li.textContent = `${element}`
             this.instructionList.appendChild(li)
         }
     }
@@ -133,7 +181,7 @@ class Recipe {
 
         this.ingredientLabel = document.createElement('span')
         this.ingredientLabel.classList.add(..."font-semibold pt-4 px-4 text-xl".split(" "))
-        this.ingredientLabel.innerHTML = "Ingredients"
+        this.ingredientLabel.textContent = "Ingredients"
       
         this.ingredientList = document.createElement('ul')
         this.ingredientList.classList.add(..."list-disc list-inside p-4".split(" "))
@@ -141,7 +189,7 @@ class Recipe {
         
         for (const ing of this.recipe_ingredients) {
             const li = document.createElement('li')
-            li.innerHTML = `${ing.amount} ${ing.name} ${ing.notes}`
+            li.textContent = `${ing.amount} ${ing.name} ${ing.notes}`
             this.ingredientList.appendChild(li)
         }
     }
@@ -158,7 +206,7 @@ class Recipe {
 
         this.cHeader = document.createElement('p')
         this.cHeader.classList.add(..."font-semibold text-xl p-2 px-8".split(" "))
-        this.cHeader.innerHTML = "What the others are saying..."
+        this.cHeader.textContent = "What the others are saying..."
         this.cContainer.appendChild(this.cHeader)
 
         if(this.comments === null) {
@@ -174,28 +222,10 @@ class Recipe {
 
     renderCommentButton() {
         this.button = document.createElement("button")
-        this.button.innerHTML = "Leave comment"
-        this.button.classList.add(..."absolute bottom-0 right-0 m-2 bg-blue-300 hover:bg-blue-400 text-black font-bold mt-2 py-2 px-4 rounded".split(" "))
+        this.button.textContent = "Leave comment"
+        this.button.classList.add(..."absolute bottom-0 right-0 m-2 rounded-lg border bg-blue-300 hover:bg-blue-400 text-gray-800 font-bold py-2 px-4 rounded block".split(" "))
         this.button.id = "newComment"
         return this.button
-    }
-
-    static toggleButton() {
-        let button = document.querySelector("#recipePref")
-        button.innerText === "Make it good!"? document.querySelector("#recipePref").innerText = "Reset" : document.querySelector("#recipePref").innerText = "Make it good!"
-    }
-
-    static reset() {
-        this.container().innerHTML = ""
-        document.getElementById("days").value = "1"
-        document.getElementsByName("mood").forEach(element => {
-            element.checked = false
-        })
-        Recipe.toggleButton()
-    }
-
-    static findById(id) {
-        return this.recipes.find(recipe => recipe.id == id)
     }
 
     add_new_comment() {
@@ -208,7 +238,7 @@ class Recipe {
     
         this.title = document.createElement('p')
         this.title.classList.add(..."font-semibold text-xl p-2 px-8".split(" "))
-        this.title.innerHTML = "Leave a comment"
+        this.title.textContent = "Leave a comment"
     
         this.form = document.createElement("form")
         this.form.className = "mx-8"
@@ -218,7 +248,7 @@ class Recipe {
         let label = document.createElement("label")
         label.setAttribute("for", "name")
         label.classList.add(..."mb-2 text-lg".split(" "))
-        label.innerHTML = "First name: "
+        label.textContent = "First name: "
     
         let name = document.createElement("input")
         name.setAttribute("type", "text")
@@ -232,7 +262,7 @@ class Recipe {
         textbox.placeholder = "Tell us your thoughts..."
     
         let button = document.createElement("BUTTON")
-        button.innerHTML = "Submit"
+        button.textContent = "Submit"
         button.classList.add(..."object-none object-right-bottom bg-blue-300 hover:bg-blue-400 text-black font-bold py-2 px-4 rounded".split(" "))
         button.id = "comment"
     
