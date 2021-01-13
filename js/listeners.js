@@ -7,13 +7,18 @@ document.addEventListener("submit", (e) => {
 
     if(target.matches("#prefForm")) {
         e.preventDefault()
-        if(target.querySelector("button").innerText === "Make it good!") {
+        if(target.querySelector("button").innerText === "Make it good") {
             Recipe.filter()
             Recipe.toggleButton()
         } else {
             Recipe.reset()
             Recipe.toggleRecipeTitle()
         } 
+    } else if(target.matches("#searchForm")) {
+        e.preventDefault()
+        let input = `${target.querySelector("input").value}`
+        Recipe.search(input)
+        Recipe.clear_search_value()
     } else if(target.matches("#newCommentForm")) {
         e.preventDefault()
         let formData = {
@@ -26,12 +31,11 @@ document.addEventListener("submit", (e) => {
         let recipe = Recipe.findById(target.dataset.recipeId)
         let button = recipe.renderCommentButton()
         recipe.element.append(button)
-    } 
+    }
 })
 
 document.addEventListener("click", (e) => {
     let target = e.target;
-
     if(target.matches("#newComment")) {
         let recipe = Recipe.findById(target.parentElement.id)
         recipe.add_new_comment()
