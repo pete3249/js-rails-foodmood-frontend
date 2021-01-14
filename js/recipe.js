@@ -92,7 +92,7 @@ class Recipe {
         })
     }
 
-    static clear_search_value() {
+    static reset_search_value() {
         document.querySelector("#searchForm").querySelector("#input").value = " "
     }
 
