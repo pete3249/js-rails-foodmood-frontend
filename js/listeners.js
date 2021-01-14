@@ -18,7 +18,7 @@ document.addEventListener("submit", (e) => {
         e.preventDefault()
         let input = `${target.querySelector("input").value}`
         Recipe.search(input)
-        Recipe.clear_search_value()
+        Recipe.reset_search_value()
     } 
 })
 
@@ -35,10 +35,7 @@ document.addEventListener("click", (e) => {
             review: target.parentElement.querySelector("textarea").value,
             recipe_id: target.dataset.recipeId
         }
-        Comment.create({comment: formData})
-        target.parentElement.remove()
-        let button = recipe.renderCommentButton()
-        Recipe.findById(target.dataset.recipeId).element.append(button)
+        Comment.create({comment: formData})    
     } else if(target.matches("#cancel")) {
         let recipe = Recipe.findById(target.dataset.recipeId)
         recipe.commentContainer.remove()

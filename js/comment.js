@@ -26,6 +26,8 @@ class Comment {
             recipe.comments.push(comment)
             recipe.cContainer.appendChild(comment.add_comment())
             new FlashMessage({type: 'success', message: "Feedback Submitted"})
+            recipe.form.remove()
+            recipe.element.appendChild(recipe.renderCommentButton())
         })
         .catch(error => {
             new FlashMessage({type: 'error', message: error})
