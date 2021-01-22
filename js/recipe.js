@@ -121,76 +121,76 @@ class Recipe {
         this.titleBox = document.createElement('div')
         this.titleBox.className = "flex"
 
-        this.mainInfo = document.createElement('div')
-        this.mainInfo.className = "flex-1"
+        let mainInfo = document.createElement('div')
+        mainInfo.className = "flex-1"
 
-        this.recipeName = document.createElement('p')
-        this.recipeName.classList.add(..."font-bold text-xl pt-4 mx-8".split(" "))
-        this.recipeName.textContent = this.name
+        let recipeName = document.createElement('p')
+        recipeName.classList.add(..."font-bold text-xl pt-4 mx-8".split(" "))
+        recipeName.textContent = this.name
 
-        this.recipeAuthor = document.createElement('p')
-        this.recipeAuthor.classList.add(..."italic text-lg pt-1 mx-8 text-sm".split(" "))
-        this.recipeAuthor.textContent = `By: ${this.author}`
+        let recipeAuthor = document.createElement('p')
+        recipeAuthor.classList.add(..."italic text-lg pt-1 mx-8 text-sm".split(" "))
+        recipeAuthor.textContent = `By: ${this.author}`
 
-        this.recipeDescription = document.createElement('p')
-        this.recipeDescription.classList.add(..."text-lg pb-2 pt-1 mx-8 text-sm".split(" "))
-        this.recipeDescription.textContent = this.description
+        let recipeDescription = document.createElement('p')
+        recipeDescription.classList.add(..."text-lg pb-2 pt-1 mx-8 text-sm".split(" "))
+        recipeDescription.textContent = this.description
 
-        this.mainInfo.append(this.recipeName, this.recipeAuthor, this.recipeDescription);
-        this.titleBox.appendChild(this.mainInfo)
+        mainInfo.append(recipeName, recipeAuthor, recipeDescription);
+        this.titleBox.appendChild(mainInfo)
     }
 
     renderImage() {
-        this.recipeImage = document.createElement('div')
-        this.recipeImage.className = "flex h-40"
-        this.image = document.createElement('img')
-        this.image.className = "h-full"
-        this.image.src = this.image_url
-        this.image.alt = this.name
-        this.recipeImage.appendChild(this.image)
-        this.titleBox.appendChild(this.recipeImage)
+        let recipeImage = document.createElement('div')
+        recipeImage.className = "flex h-40"
+        let image = document.createElement('img')
+        image.className = "h-full"
+        image.src = this.image_url
+        image.alt = this.name
+        recipeImage.appendChild(image)
+        this.titleBox.appendChild(recipeImage)
     }
 
     renderInstructions() {
         this.recipeDetails = document.createElement('div')
         this.recipeDetails.classList.add(..."flex justify-evenly".split(" "))
 
-        this.instructionsContainer = document.createElement('div')
-        this.instructionsContainer.classList.add(..."w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-r-none".split(" "))
-        this.recipeDetails.appendChild(this.instructionsContainer)
+        let instructionsContainer = document.createElement('div')
+        instructionsContainer.classList.add(..."w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-r-none".split(" "))
+        this.recipeDetails.appendChild(instructionsContainer)
 
-        this.instructionLabel = document.createElement('span')
-        this.instructionLabel.classList.add(..."font-semibold pt-4 px-4 text-xl".split(" "))
-        this.instructionLabel.textContent = "Instructions"
+        let instructionLabel = document.createElement('span')
+        instructionLabel.classList.add(..."font-semibold pt-4 px-4 text-xl".split(" "))
+        instructionLabel.textContent = "Instructions"
 
-        this.instructionList = document.createElement('ul')
-        this.instructionList.classList.add(..."list-disc list-inside p-4".split(" "))
-        this.instructionsContainer.append(this.instructionLabel, this.instructionList)
+        let instructionList = document.createElement('ul')
+        instructionList.classList.add(..."list-disc list-inside p-4".split(" "))
+        instructionsContainer.append(instructionLabel, instructionList)
 
         for (const element of this.instructions) {
             const li = document.createElement('li')
             li.textContent = `${element}`
-            this.instructionList.appendChild(li)
+            instructionList.appendChild(li)
         }
     }
 
     renderIngredients() {
-        this.ingredientContainer = document.createElement('div')
-        this.ingredientContainer.classList.add(..."w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-r-none".split(" "))
-        this.recipeDetails.appendChild(this.ingredientContainer)
+        let ingredientContainer = document.createElement('div')
+        ingredientContainer.classList.add(..."w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-r-none".split(" "))
+        this.recipeDetails.appendChild(ingredientContainer)
 
-        this.ingredientLabel = document.createElement('span')
-        this.ingredientLabel.classList.add(..."font-semibold pt-4 px-4 text-xl".split(" "))
-        this.ingredientLabel.textContent = "Ingredients"
+        let ingredientLabel = document.createElement('span')
+        ingredientLabel.classList.add(..."font-semibold pt-4 px-4 text-xl".split(" "))
+        ingredientLabel.textContent = "Ingredients"
       
-        this.ingredientList = document.createElement('ul')
-        this.ingredientList.classList.add(..."list-disc list-inside p-4".split(" "))
-        this.ingredientContainer.append(this.ingredientLabel, this.ingredientList)
+        let ingredientList = document.createElement('ul')
+        ingredientList.classList.add(..."list-disc list-inside p-4".split(" "))
+        ingredientContainer.append(ingredientLabel, ingredientList)
         
         for (const ing of this.recipe_ingredients) {
             const li = document.createElement('li')
             li.textContent = `${ing.amount} ${ing.name} ${ing.notes}`
-            this.ingredientList.appendChild(li)
+            ingredientList.appendChild(li)
         }
     }
 
@@ -198,25 +198,25 @@ class Recipe {
         this.currentComments = document.createElement("div")
         this.currentComments.id = "currentCommentsSection"
     
-        this.cContainer = document.createElement("div")
-        this.cContainer.id = "comments"
-        this.cContainer.dataset.recipeId = this.id
-        this.cContainer.classList.add(..."flex-auto pb-4".split(" "))
-        this.currentComments.appendChild(this.cContainer)
+        let cContainer = document.createElement("div")
+        cContainer.id = "comments"
+        cContainer.dataset.recipeId = this.id
+        cContainer.classList.add(..."flex-auto pb-4".split(" "))
+        this.currentComments.appendChild(cContainer)
 
-        this.cHeader = document.createElement('p')
-        this.cHeader.classList.add(..."font-semibold text-xl p-2 px-8".split(" "))
-        this.cHeader.textContent = "What the others are saying..."
-        this.cContainer.appendChild(this.cHeader)
+        let cHeader = document.createElement('p')
+        cHeader.classList.add(..."font-semibold text-xl p-2 px-8".split(" "))
+        cHeader.textContent = "What the others are saying..."
+        cContainer.appendChild(cHeader)
 
         if(this.comments === null) {
             this.comments = []
-            this.cContainer.append(this.comments)
+            cContainer.append(this.comments)
             return this.comments
         } else {
             this.comments = this.comments.map(comment => new Comment(comment))
             let comments = this.comments.map(comment => comment.add_comment())
-            this.cContainer.append(...comments)
+            cContainer.append(...comments)
         }
     }
 
