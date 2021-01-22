@@ -7,7 +7,7 @@ class Mood {
     static container() {
         return this.c ||= document.querySelector("#moodSelection")
     }
-
+    
     static all() {
         return fetch("http://localhost:3000/moods")
             .then(res => res.json())
@@ -19,20 +19,20 @@ class Mood {
     }
 
     render() {
-        this.div = document.createElement("div")
+        let div = document.createElement("div")
 
-        this.checkbox = document.createElement("input");
-        this.checkbox.setAttribute("type", "checkbox");
-        this.checkbox.value = this.id;
-        this.checkbox.id = this.name;
-        this.checkbox.name = "mood";
+        let checkbox = document.createElement("input");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.value = this.id;
+        checkbox.id = this.name;
+        checkbox.name = "mood";
 
-        this.label = document.createElement("label");
-        this.label.setAttribute("for",`${this.name}`);
-        this.label.textContent = this.name;
-        this.label.classList.add(..."text-lg font-light".split(" "));
-        this.div.append(this.checkbox, " ", this.label)
+        let label = document.createElement("label");
+        label.setAttribute("for",`${this.name}`);
+        label.textContent = this.name;
+        label.classList.add(..."text-lg font-light".split(" "));
+        div.append(checkbox, " ", label)
 
-        return Mood.container().appendChild(this.div)
+        return Mood.container().appendChild(div)
     }
 }
