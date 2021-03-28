@@ -24,7 +24,7 @@ class Comment {
             let comment = new Comment(commentObject)
             let recipe = Recipe.findById(comment.recipe_id)
             recipe.comments.push(comment)
-            recipe.cContainer.appendChild(comment.add_comment())
+            recipe.currentComments.appendChild(comment.add_comment())
             new FlashMessage({type: 'success', message: "Feedback Submitted"})
             recipe.form.remove()
             recipe.element.appendChild(recipe.renderCommentButton())
