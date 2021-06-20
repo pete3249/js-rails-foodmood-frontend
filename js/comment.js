@@ -35,16 +35,16 @@ class Comment {
     }
 
     add_comment() {
-        this.commentDiv = document.createElement("div")
-        this.commentDiv.id = this.id
-        this.commentDiv.dataset.recipe_id = this.recipe_id
+        let commentDiv = document.createElement("div")
+        commentDiv.id = this.id
+        commentDiv.dataset.recipe_id = this.recipe_id
 
-        this.commentBody = document.createElement("p")
-        this.commentBody.classList.add(..."p-2 px-8 italic".split(" "))
-        this.commentBody.textContent = `${this.name} said: ${this.review} (${this.created_at})`
+        let commentBody = document.createElement("p")
+        commentBody.classList.add(..."p-2 px-8 italic".split(" "))
+        commentBody.textContent = `${this.name} said: ${this.review} (${this.created_at})`
 
-        this.commentDiv.append(this.commentBody)
-        return this.commentDiv
+        commentDiv.append(commentBody)
+        return commentDiv
     }
 
 }
