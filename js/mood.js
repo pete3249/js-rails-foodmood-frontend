@@ -12,9 +12,8 @@ class Mood {
         return fetch("http://localhost:3000/moods")
             .then(res => res.json())
             .then(moodObjects => {
-                this.moods = moodObjects.map(moodAttributes => new Mood(moodAttributes))
-                let moods = this.moods.map(mood => mood.render())
-                return this.moods;
+                let moods = moodObjects.map(moodAttributes => new Mood(moodAttributes).render())
+                return moods;
             })
     }
 
