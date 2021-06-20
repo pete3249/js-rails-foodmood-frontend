@@ -12,7 +12,7 @@ class FlashMessage {
     render() {
         this.container().textContent = this.message;
         this.toggleDisplay();
-        setTimeout(() => this.toggleDisplay(), 5000)
+        setTimeout(() => this.toggleDisplay(), 3000)
     }
 
     toggleDisplay() {
